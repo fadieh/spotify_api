@@ -3,9 +3,11 @@
 <body>
 
 	<main>
+		<h1>DJ BPM Tool</h1>
 		<section>
-			<input type="text" id="genre-name" placeholder="Enter the Genre Here."/>
-			<input type="number" id="bpm" placeholder="Enter the BPM here." id="bpm">
+			<input type="text" id="genre-name" placeholder="Enter the Genre Here." />
+			<input type="number" id="bpm" placeholder="Enter the BPM here." />
+			<!-- <input type="text" id="key" placeholder="Enter the Key here." />  -->
 			<a href="#" id="fetch-albums">Fetch</a>
 		</section>
 
@@ -15,21 +17,31 @@
 	</main>
 
 	<template id="results-template">
-
+		<article>
+			<header>
+				{{#each response.songs}}
+				<h2>{{ artist_name }}</h2><br>
+				<h3>{{ title }}</h3>
+				<h1>____________________</h1>
+				{{/each}}
+			</header>
+		</article>
 	</template>
 
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="handlebars.js"></script>
-	<script type="text/javascript">
-	$('#fetch-albums').on('click', function(){
-		var genre = $('#genre-name').val();
-		var bpm = $('#bpm').val();
-		var source = $('#results').html();
-		var template = Handlebars.compile(source);
-		$.get('http://developer.echonest.com/api/v4/song/search?api_key=1APOSNTGKZWRQN06B&style=' + genre + '&min_danceability=0.65&min_tempo=' + bpm + '&results=5', function(data) {
-			console.log(data);
-		});
-	});
+	<script type="text/javascript" src="interface.js">
+	// $('#fetch-albums').on('click', function(){
+	// 	var genre = $('#genre-name').val();
+	// 	var bpm = $('#bpm').val();
+	// 	// var key = $('#key').val();
+	// 	var source = $('#results-template').html();
+	// 	var template = Handlebars.compile(source);
+	// 	$.get('http://developer.echonest.com/api/v4/song/search?api_key=1APOSNTGKZWRQN06B&style=' + genre + '&min_danceability=0.35&min_tempo=' + bpm + '&song_min_hotttnesss=0.4&results=5', function(data) { 
+	// 		// console.log(data)
+	// 		$('#results').append(template(data));
+	// 	});
+	// });
 
 	</script> 
 
